@@ -67,7 +67,7 @@ pdf_steam2=pdf_steam.reset_index()
 game_title=pdf_steam2['appid']
 
 similarity_rate2=pd.DataFrame(data=similarity_rate,index=game_title,columns=game_title)
-similarity_rate2
+similarity_rate2.head()
 
 def recommend_game(appid, top_n):
    rec_game=similarity_rate2[appid].reset_index()
