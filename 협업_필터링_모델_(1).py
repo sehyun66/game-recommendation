@@ -7,20 +7,17 @@ Original file is located at
     https://colab.research.google.com/drive/1TRkYT-CVt0s2f1avIAvBdq-QV2tNbOn9
 """
 
-# Commented out IPython magic to ensure Python compatibility.
-## 코랩을 사용할 때
-#드라이브 마운트
-from google.colab import drive
-drive.mount('/content/drive')
 
-#현재 작업 위치 이동
-#띄어쓰기에 \붙일 것
-# %cd /content/drive/MyDrive/MultiCampus/데이터 시각화3
+# from google.colab import drive
+# drive.mount('/content/drive')
+
+
+# %cd /content/drive/MyDrive/
 
 import pandas as pd
 
 df_steam = pd.read_csv('./data/final_seh2.csv')
-df_steam
+df_steam.head()
 
 df_steam=df_steam.drop(columns=['Unnamed: 0','Unnamed: 0.1'])
 
@@ -40,7 +37,7 @@ df_steam = df_steam.rename(
 )
 
 df_meta = pd.read_csv('./data/joined_meta_df.csv')
-df_meta
+df_meta.head()
 
 df_meta=df_meta.drop(columns='Unnamed: 0')
 
@@ -68,33 +65,33 @@ df_meta = df_meta.rename(
 
 review_per_meta = pd.DataFrame(df_meta['user'].value_counts())
 review_per_meta = review_per_meta.reset_index().rename(columns={'index':'user', 'user':'counts'})
-review_per_meta
+review_per_meta.head()
 
 review_per_meta2=review_per_meta[review_per_meta['counts']>=5] # 유저평가 수가 20개 이상인 데이터만 남김
-review_per_meta2
+review_per_meta2.head()
 
 meta_df=pd.merge(df_meta,review_per_meta2,on='user',how='right')
-meta_df
+meta_df.head()
 
 meta_df=meta_df.drop(columns='counts', axis=1)
-meta_df
+meta_df.head()
 
 review_per_user = pd.DataFrame(df_steam['user'].value_counts())
 review_per_user = review_per_user.reset_index().rename(columns={'index':'user', 'user':'counts'})
-review_per_user
+review_per_user.head()
 
 review_per_user2=review_per_user[review_per_user['counts']>=20] # 유저평가 수가 20개 이상인 데이터만 남김
-review_per_user2
+review_per_user2.head()
 
 df_steam4=pd.merge(df_steam,review_per_user2,on='user',how='right')
-df_steam4
+df_steam4.head()
 
 df_steam4.info()
 
 df_steam4['appid']=df_steam4['appid'].astype(int)
 
 df_steam4=df_steam4.drop(columns='counts', axis=1)
-df_steam4
+df_steam4.head()
 
 len(df_steam4['title'].unique())
 
@@ -106,7 +103,7 @@ df_steam4= df_steam4[df_steam4['title'] != '']
 df_steam4.info()
 
 df_concat=pd.concat([df_steam4,meta_df],join='inner')
-df_concat
+df_concat.head()
 
 import pickle
 
