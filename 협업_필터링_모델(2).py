@@ -164,14 +164,14 @@ print(svd_Bay.max)
 
 svd_Bay
 
-import joblib
+# import joblib
 
-joblib.dump(svd_Bay, 'svd_bay.pkl')
+# joblib.dump(svd_Bay, 'svd_bay.pkl')
 
-df_svd = joblib.load('svd_bay.pkl')
-df_svd
+# df_svd = joblib.load('svd_bay.pkl')
+# df_svd
 
-print(df_svd.max)
+# print(df_svd.max)
 
 
 
