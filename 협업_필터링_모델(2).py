@@ -162,7 +162,7 @@ print('-' * 50)
 print('Final Results')
 print(svd_Bay.max)
 
-svd_Bay
+print(svd_Bay)
 
 # import joblib
 
